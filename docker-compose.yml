@@ -1,0 +1,16 @@
+version: '3'
+services:
+  auth-service:
+    build: services/auth
+    ports:
+      - "3010:80"
+    volumes: 
+      - ./services/auth:/usr/src/app
+    depends_on: 
+      - platform-service
+  platform-service:
+    build: services/platform
+    volumes: 
+      - ./services/platform:/usr/src/app
+  redis:
+    image: "redis:alpine"
